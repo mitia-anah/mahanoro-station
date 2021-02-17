@@ -36380,138 +36380,6 @@ function fetchData() {
 //     value: trip
 //   }
 // }
-},{}],"src/components/Trips.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _reactRedux = require("react-redux");
-
-var _fetchDataAction = require("../actions/fetchDataAction");
-
-var _reactRouterDom = require("react-router-dom");
-
-var _tripsReducer = require("../reducers/tripsReducer");
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function Trips() {
-  const trips = (0, _reactRedux.useSelector)(state => state.trips);
-  console.log(trips);
-  const dispatch = (0, _reactRedux.useDispatch)();
-  (0, _react.useEffect)(() => {
-    dispatch((0, _fetchDataAction.fetchData)());
-  }, []);
-  const destinationsArray = trips.map(city => city.destination);
-  const destinations = [...new Set(destinationsArray)];
-  console.log(destinations);
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, destinations.map(city => /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: `/${city}`,
-    key: city
-  }, /*#__PURE__*/_react.default.createElement("li", null, city)))));
-}
-
-const mapStateToProps = state => {
-  return {
-    trips: state.trips
-  };
-};
-
-const mapDispatchToProps = {
-  trips: _tripsReducer.trips
-};
-
-var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Trips);
-
-exports.default = _default;
-},{"react":"node_modules/react/index.js","react-redux":"node_modules/react-redux/es/index.js","../actions/fetchDataAction":"src/actions/fetchDataAction.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../reducers/tripsReducer":"src/reducers/tripsReducer.js"}],"src/components/MyAccount.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _reactRedux = require("react-redux");
-
-var _myAccountReducer = _interopRequireDefault(require("../reducers/myAccountReducer"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function MyAccount() {
-  const account = (0, _reactRedux.useSelector)(state => state.account); // console.log(account);
-
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", null, "My account"), /*#__PURE__*/_react.default.createElement("p", null, "my name"), /*#__PURE__*/_react.default.createElement("div", {
-    className: "personal_information"
-  }, /*#__PURE__*/_react.default.createElement("h3", null, "My personal informations"), /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("label", null, "First name"), /*#__PURE__*/_react.default.createElement("input", {
-    type: "text",
-    placeholder: "Rosny"
-  }), /*#__PURE__*/_react.default.createElement("label", null, "Last name"), /*#__PURE__*/_react.default.createElement("input", {
-    type: "text",
-    placeholder: "Mamuah"
-  }), /*#__PURE__*/_react.default.createElement("label", null, "Phone number"), /*#__PURE__*/_react.default.createElement("input", {
-    type: "number",
-    placeholder: "034.....",
-    min: "10",
-    max: "10"
-  }), /*#__PURE__*/_react.default.createElement("button", {
-    type: "submit"
-  }, "Update"))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "bookings"
-  }, account.map(account => {
-    /*#__PURE__*/
-    _react.default.createElement("div", {
-      key: account.id
-    }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, account.destination), /*#__PURE__*/_react.default.createElement("span", null, account.seats), /*#__PURE__*/_react.default.createElement("span", null, account.departureTime), /*#__PURE__*/_react.default.createElement("span", null, account.price)), /*#__PURE__*/_react.default.createElement("button", null, "Cancel"));
-  })));
-}
-
-const mapStateToProps = state => {
-  return {
-    account: state.account
-  };
-};
-
-const mapDispatchToProps = {
-  myAccount: _myAccountReducer.default
-};
-
-var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(MyAccount);
-
-exports.default = _default;
-},{"react":"node_modules/react/index.js","react-redux":"node_modules/react-redux/es/index.js","../reducers/myAccountReducer":"src/reducers/myAccountReducer.js"}],"src/components/MastHead.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _MyAccount = _interopRequireDefault(require("./MyAccount"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function Header() {
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Mahanoro Station"));
-}
-
-var _default = Header;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","./MyAccount":"src/components/MyAccount.js"}],"src/images/noto-v1_bus.svg":[function(require,module,exports) {
-module.exports = "/noto-v1_bus.ec3e818a.svg";
-},{}],"src/images/alarm_clock.svg":[function(require,module,exports) {
-module.exports = "/alarm_clock.ce8ee30e.svg";
 },{}],"node_modules/shallowequal/index.js":[function(require,module,exports) {
 //
 
@@ -38433,7 +38301,172 @@ exports.ServerStyleSheet = Ue;
 "production" !== "development" && "undefined" != typeof navigator && "ReactNative" === navigator.product && console.warn("It looks like you've imported 'styled-components' on React Native.\nPerhaps you're looking to import 'styled-components/native'?\nRead more about this at https://www.styled-components.com/docs/basics#react-native"), "production" !== "development" && "test" !== "development" && (window["__styled-components-init__"] = window["__styled-components-init__"] || 0, 1 === window["__styled-components-init__"] && console.warn("It looks like there are several instances of 'styled-components' initialized in this application. This may cause dynamic styles to not render properly, errors during the rehydration process, a missing theme prop, and makes your application bigger without good reason.\n\nSee https://s-c.sh/2BAXzed for more info."), window["__styled-components-init__"] += 1);
 var _default = qe;
 exports.default = _default;
-},{"react-is":"node_modules/react-is/index.js","react":"node_modules/react/index.js","shallowequal":"node_modules/shallowequal/index.js","@emotion/stylis":"node_modules/@emotion/stylis/dist/stylis.browser.esm.js","@emotion/unitless":"node_modules/@emotion/unitless/dist/unitless.browser.esm.js","@emotion/is-prop-valid":"node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js","hoist-non-react-statics":"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js","process":"../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"src/components/NextTrip.js":[function(require,module,exports) {
+},{"react-is":"node_modules/react-is/index.js","react":"node_modules/react/index.js","shallowequal":"node_modules/shallowequal/index.js","@emotion/stylis":"node_modules/@emotion/stylis/dist/stylis.browser.esm.js","@emotion/unitless":"node_modules/@emotion/unitless/dist/unitless.browser.esm.js","@emotion/is-prop-valid":"node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js","hoist-non-react-statics":"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js","process":"../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"src/images/vector.png":[function(require,module,exports) {
+module.exports = "/vector.a24f6723.png";
+},{}],"src/components/Trips.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactRedux = require("react-redux");
+
+var _fetchDataAction = require("../actions/fetchDataAction");
+
+var _reactRouterDom = require("react-router-dom");
+
+var _tripsReducer = require("../reducers/tripsReducer");
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _vector = _interopRequireDefault(require("../images/vector.png"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const CityList = _styledComponents.default.li`
+    text-decoration: none;
+    border: 1px solid;
+    border-style: none;
+    padding: 2rem;
+    margin: 1rem;
+    background: #0F0E17;
+    list-style: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 22px;
+`;
+const TripsContainer = _styledComponents.default.div`
+    div {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2,1fr);
+    }
+   
+`;
+
+function Trips() {
+  const trips = (0, _reactRedux.useSelector)(state => state.trips);
+  console.log(trips);
+  const dispatch = (0, _reactRedux.useDispatch)();
+  (0, _react.useEffect)(() => {
+    dispatch((0, _fetchDataAction.fetchData)());
+  }, []);
+  const destinationsArray = trips.map(city => city.destination);
+  const destinations = [...new Set(destinationsArray)];
+  console.log(destinations);
+  return /*#__PURE__*/_react.default.createElement(TripsContainer, null, /*#__PURE__*/_react.default.createElement("div", null, destinations.map(city => /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: `/${city}`,
+    key: city
+  }, /*#__PURE__*/_react.default.createElement(CityList, null, /*#__PURE__*/_react.default.createElement("span", null, /*#__PURE__*/_react.default.createElement("img", {
+    src: _vector.default
+  })), city)))));
+}
+
+const mapStateToProps = state => {
+  return {
+    trips: state.trips
+  };
+};
+
+const mapDispatchToProps = {
+  trips: _tripsReducer.trips
+};
+
+var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Trips);
+
+exports.default = _default;
+},{"react":"node_modules/react/index.js","react-redux":"node_modules/react-redux/es/index.js","../actions/fetchDataAction":"src/actions/fetchDataAction.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../reducers/tripsReducer":"src/reducers/tripsReducer.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","../images/vector.png":"src/images/vector.png"}],"src/components/MyAccount.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactRedux = require("react-redux");
+
+var _myAccountReducer = _interopRequireDefault(require("../reducers/myAccountReducer"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function MyAccount() {
+  const account = (0, _reactRedux.useSelector)(state => state.account); // console.log(account);
+
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", null, "My account"), /*#__PURE__*/_react.default.createElement("p", null, "my name"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "personal_information"
+  }, /*#__PURE__*/_react.default.createElement("h3", null, "My personal informations"), /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("label", null, "First name"), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    placeholder: "Rosny"
+  }), /*#__PURE__*/_react.default.createElement("label", null, "Last name"), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    placeholder: "Mamuah"
+  }), /*#__PURE__*/_react.default.createElement("label", null, "Phone number"), /*#__PURE__*/_react.default.createElement("input", {
+    type: "number",
+    placeholder: "034.....",
+    min: "10",
+    max: "10"
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    type: "submit"
+  }, "Update"))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "bookings"
+  }, account.map(account => {
+    /*#__PURE__*/
+    _react.default.createElement("div", {
+      key: account.id
+    }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, account.destination), /*#__PURE__*/_react.default.createElement("span", null, account.seats), /*#__PURE__*/_react.default.createElement("span", null, account.departureTime), /*#__PURE__*/_react.default.createElement("span", null, account.price)), /*#__PURE__*/_react.default.createElement("button", null, "Cancel"));
+  })));
+}
+
+const mapStateToProps = state => {
+  return {
+    account: state.account
+  };
+};
+
+const mapDispatchToProps = {
+  myAccount: _myAccountReducer.default
+};
+
+var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(MyAccount);
+
+exports.default = _default;
+},{"react":"node_modules/react/index.js","react-redux":"node_modules/react-redux/es/index.js","../reducers/myAccountReducer":"src/reducers/myAccountReducer.js"}],"src/components/MastHead.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _MyAccount = _interopRequireDefault(require("./MyAccount"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Header() {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Mahanoro Station"));
+}
+
+var _default = Header;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","./MyAccount":"src/components/MyAccount.js"}],"src/images/noto-v1_bus.svg":[function(require,module,exports) {
+module.exports = "/noto-v1_bus.ec3e818a.svg";
+},{}],"src/images/alarm_clock.svg":[function(require,module,exports) {
+module.exports = "/alarm_clock.ce8ee30e.svg";
+},{}],"src/components/NextTrip.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38645,7 +38678,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50226" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63639" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
