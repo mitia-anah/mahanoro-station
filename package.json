@@ -1,0 +1,42 @@
+{
+  "name": "mahanoro-station",
+  "version": "1.0.0",
+  "description": "![Design preview for the Mahanoro station coding challenge](./design/1.png)",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mitia-anah/mahanoro-station.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mitia-anah/mahanoro-station/issues"
+  },
+  "homepage": "https://github.com/mitia-anah/mahanoro-station#readme",
+  "dependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "react-redux": "*",
+    "react-router-dom": "*",
+    "react-scripts": "*",
+    "redux": "*",
+    "redux-thunk": "*",
+    "styled-components": "*"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
